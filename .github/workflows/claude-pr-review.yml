@@ -3,7 +3,7 @@
 #
 # GitHub only runs workflows from .github/workflows at the *repository root*.
 # Use this when `frontend/` is its own Git repo. If frontend lives inside a parent
-# monorepo, either make the parent repo’s root workflow call tooling here or split repos.
+# monorepo, either make the parent repo's root workflow call tooling here or split repos.
 name: Claude PR review
 
 on:
@@ -30,25 +30,24 @@ jobs:
       - uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          track_progress: true
+          model: claude-haiku-4-5-20251001
+          allowed_tools: "Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr review:*)"
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number }}
 
             This repository is the **frontend** app (Next.js, React, TypeScript).
 
-            Focus on:
-            - Correctness, hooks, and client/server boundaries
-            - Security (XSS, unsafe HTML, env exposure, auth flows)
-            - Performance (bundles, data fetching, caching)
-            - Accessibility and UX regressions where relevant
+            Steps:
+            1. Run `gh pr diff ${{ github.event.pull_request.number }}` to see all changed files.
+            2. Run `gh pr view ${{ github.event.pull_request.number }}` for PR title and description.
+            3. Review the changes and focus on:
+               - Correctness, React hooks rules, and client/server component boundaries
+               - Security (XSS, unsafe HTML rendering, env variable exposure, auth flows)
+               - Performance (bundle size, data fetching, caching strategies)
+               - Accessibility and UX regressions
+            4. Post your review with:
+               `gh pr review ${{ github.event.pull_request.number }} --comment -b "**[Claude · frontend]** <your review here>"`
 
-            The PR branch is already checked out.
-
-            Use `gh pr comment` for a short summary (prefix with **[Claude · frontend]**).
-            Use `mcp__github_inline_comment__create_inline_comment` (with `confirmed: true`) for concrete issues.
-
-            Only post GitHub comments—do not paste the full review as a workflow log only.
-
-          claude_args: |
-            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
+            Write a clear, structured review. Use markdown headers and bullet points.
+            Only post via `gh pr review` — do not output the review to the workflow log only.
