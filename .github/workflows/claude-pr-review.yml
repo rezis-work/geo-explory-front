@@ -42,30 +42,39 @@ jobs:
 
             ```
             src/
-              app/                  # App Router — only layouts, pages, loading, error, not-found files
-                (routes)/           # Route groups for layout sharing (no URL segment)
-                layout.tsx          # Root layout — <html>, <body>, global providers
-                page.tsx            # Route entry points only, no business logic
-                globals.css         # Global styles and Tailwind @import
-              components/
-                ui/                 # Generic, reusable UI primitives (Button, Input, Modal…)
-                [feature]/          # Feature-specific components grouped by domain
-              hooks/                # Custom React hooks (use-*.ts)
-              lib/                  # Pure utility functions, API clients, helpers
-              types/                # Shared TypeScript interfaces and types (*.types.ts)
-            public/                 # Static assets served at /
+              app/                        # App Router — only layouts, pages, loading, error, not-found files
+                (routes)/                 # Route groups for layout sharing (no URL segment)
+                layout.tsx                # Root layout — <html>, <body>, global providers
+                page.tsx                  # Route entry points only — composes module components
+                globals.css               # Global styles and Tailwind @import
+              modules/                    # One folder per feature/domain
+                tours/                    # Example feature module
+                  components/             # React components used only within this feature
+                  ui/                     # Dumb/presentational primitives scoped to this feature
+                  hooks/                  # Custom hooks scoped to this feature (use-*.ts)
+                  services/               # API calls, server actions, data-fetching logic for this feature
+                  types.ts                # TypeScript types/interfaces for this feature
+                [other-feature]/          # Same structure repeated per feature
+              components/                 # Shared UI components used across multiple modules
+                ui/                       # Shared low-level primitives (Button, Input, Modal…)
+              hooks/                      # Shared custom hooks used across multiple modules
+              lib/                        # Shared pure utilities, API client setup, helpers
+              types/                      # Shared TypeScript interfaces used across modules
+            public/                       # Static assets served at /
             ```
 
             ### Rules to enforce
-            - **No business logic in `app/` pages** — pages compose components, that's it.
-            - **Client components** (`"use client"`) must live in `components/`, never in `app/` layouts or pages unless unavoidable.
+            - **Feature code lives in `modules/<feature>/`** — if code is only used by one feature, it must not be in the root `components/`, `hooks/`, or `lib/`.
+            - **Shared code lives at the root level** — `src/components/`, `src/hooks/`, `src/lib/`, `src/types/` are only for things used by 2+ modules.
+            - **`modules/<feature>/services/`** owns all API calls and server actions for that feature — no fetch/axios calls directly in components or hooks.
+            - **`app/` pages are thin** — they import from `modules/`, compose layouts, and pass props. No business logic, no data fetching inside page files.
+            - **Client components** (`"use client"`) go in `modules/<feature>/components/` or `modules/<feature>/ui/`, never in `app/` unless unavoidable.
             - **Server components** are the default; only add `"use client"` when state/effects/browser APIs are needed.
-            - **Hooks** belong in `src/hooks/`, not inlined in components or pages.
-            - **Types** shared across more than one file go in `src/types/`, not re-declared per file.
-            - **No barrel index.ts re-exports** unless the directory has 5+ exports.
+            - **No cross-module imports** — `modules/tours/` must not import from `modules/bookings/`. Shared logic must be lifted to `src/lib/` or `src/components/`.
             - **Tailwind only** for styling — no inline `style={{}}` objects, no CSS modules, no styled-components.
             - **`lib/`** must be framework-agnostic (no React imports).
             - **`public/`** is for static assets only — no JS/TS files there.
+            - **No barrel index.ts re-exports** unless the directory has 5+ exports.
 
             ## Review steps
             1. Run `gh pr diff ${{ github.event.pull_request.number }}` to see all changed files.
