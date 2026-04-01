@@ -36,18 +36,49 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number }}
 
-            This repository is the **frontend** app (Next.js, React, TypeScript).
+            This repository is the **frontend** app (Next.js 16, React 19, TypeScript, Tailwind CSS v4).
 
-            Steps:
+            ## Expected project structure
+
+            ```
+            src/
+              app/                  # App Router — only layouts, pages, loading, error, not-found files
+                (routes)/           # Route groups for layout sharing (no URL segment)
+                layout.tsx          # Root layout — <html>, <body>, global providers
+                page.tsx            # Route entry points only, no business logic
+                globals.css         # Global styles and Tailwind @import
+              components/
+                ui/                 # Generic, reusable UI primitives (Button, Input, Modal…)
+                [feature]/          # Feature-specific components grouped by domain
+              hooks/                # Custom React hooks (use-*.ts)
+              lib/                  # Pure utility functions, API clients, helpers
+              types/                # Shared TypeScript interfaces and types (*.types.ts)
+            public/                 # Static assets served at /
+            ```
+
+            ### Rules to enforce
+            - **No business logic in `app/` pages** — pages compose components, that's it.
+            - **Client components** (`"use client"`) must live in `components/`, never in `app/` layouts or pages unless unavoidable.
+            - **Server components** are the default; only add `"use client"` when state/effects/browser APIs are needed.
+            - **Hooks** belong in `src/hooks/`, not inlined in components or pages.
+            - **Types** shared across more than one file go in `src/types/`, not re-declared per file.
+            - **No barrel index.ts re-exports** unless the directory has 5+ exports.
+            - **Tailwind only** for styling — no inline `style={{}}` objects, no CSS modules, no styled-components.
+            - **`lib/`** must be framework-agnostic (no React imports).
+            - **`public/`** is for static assets only — no JS/TS files there.
+
+            ## Review steps
             1. Run `gh pr diff ${{ github.event.pull_request.number }}` to see all changed files.
             2. Run `gh pr view ${{ github.event.pull_request.number }}` for PR title and description.
-            3. Review the changes and focus on:
-               - Correctness, React hooks rules, and client/server component boundaries
-               - Security (XSS, unsafe HTML rendering, env variable exposure, auth flows)
-               - Performance (bundle size, data fetching, caching strategies)
-               - Accessibility and UX regressions
+            3. Review the changes and flag:
+               - Files placed in the wrong directory per the structure above
+               - Client/server boundary violations
+               - React hooks rules violations
+               - Security issues (XSS, unsafe HTML, env variable exposure, auth flows)
+               - Performance issues (missing Suspense, over-fetching, no caching)
+               - Accessibility regressions
             4. Post your review with:
                `gh pr review ${{ github.event.pull_request.number }} --comment -b "**[Claude · frontend]** <your review here>"`
 
-            Write a clear, structured review. Use markdown headers and bullet points.
+            Write a clear, structured review using markdown headers and bullet points.
             Only post via `gh pr review` — do not output the review to the workflow log only.
