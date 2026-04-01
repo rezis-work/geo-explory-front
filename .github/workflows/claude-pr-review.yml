@@ -36,18 +36,58 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number }}
 
-            This repository is the **frontend** app (Next.js, React, TypeScript).
+            This repository is the **frontend** app (Next.js 16, React 19, TypeScript, Tailwind CSS v4).
 
-            Steps:
+            ## Expected project structure
+
+            ```
+            src/
+              app/                        # App Router — only layouts, pages, loading, error, not-found files
+                (routes)/                 # Route groups for layout sharing (no URL segment)
+                layout.tsx                # Root layout — <html>, <body>, global providers
+                page.tsx                  # Route entry points only — composes module components
+                globals.css               # Global styles and Tailwind @import
+              modules/                    # One folder per feature/domain
+                tours/                    # Example feature module
+                  components/             # React components used only within this feature
+                  ui/                     # Dumb/presentational primitives scoped to this feature
+                  hooks/                  # Custom hooks scoped to this feature (use-*.ts)
+                  services/               # API calls, server actions, data-fetching logic for this feature
+                  types.ts                # TypeScript types/interfaces for this feature
+                [other-feature]/          # Same structure repeated per feature
+              components/                 # Shared UI components used across multiple modules
+                ui/                       # Shared low-level primitives (Button, Input, Modal…)
+              hooks/                      # Shared custom hooks used across multiple modules
+              lib/                        # Shared pure utilities, API client setup, helpers
+              types/                      # Shared TypeScript interfaces used across modules
+            public/                       # Static assets served at /
+            ```
+
+            ### Rules to enforce
+            - **Feature code lives in `modules/<feature>/`** — if code is only used by one feature, it must not be in the root `components/`, `hooks/`, or `lib/`.
+            - **Shared code lives at the root level** — `src/components/`, `src/hooks/`, `src/lib/`, `src/types/` are only for things used by 2+ modules.
+            - **`modules/<feature>/services/`** owns all API calls and server actions for that feature — no fetch/axios calls directly in components or hooks.
+            - **`app/` pages are thin** — they import from `modules/`, compose layouts, and pass props. No business logic, no data fetching inside page files.
+            - **Client components** (`"use client"`) go in `modules/<feature>/components/` or `modules/<feature>/ui/`, never in `app/` unless unavoidable.
+            - **Server components** are the default; only add `"use client"` when state/effects/browser APIs are needed.
+            - **No cross-module imports** — `modules/tours/` must not import from `modules/bookings/`. Shared logic must be lifted to `src/lib/` or `src/components/`.
+            - **Tailwind only** for styling — no inline `style={{}}` objects, no CSS modules, no styled-components.
+            - **`lib/`** must be framework-agnostic (no React imports).
+            - **`public/`** is for static assets only — no JS/TS files there.
+            - **No barrel index.ts re-exports** unless the directory has 5+ exports.
+
+            ## Review steps
             1. Run `gh pr diff ${{ github.event.pull_request.number }}` to see all changed files.
             2. Run `gh pr view ${{ github.event.pull_request.number }}` for PR title and description.
-            3. Review the changes and focus on:
-               - Correctness, React hooks rules, and client/server component boundaries
-               - Security (XSS, unsafe HTML rendering, env variable exposure, auth flows)
-               - Performance (bundle size, data fetching, caching strategies)
-               - Accessibility and UX regressions
+            3. Review the changes and flag:
+               - Files placed in the wrong directory per the structure above
+               - Client/server boundary violations
+               - React hooks rules violations
+               - Security issues (XSS, unsafe HTML, env variable exposure, auth flows)
+               - Performance issues (missing Suspense, over-fetching, no caching)
+               - Accessibility regressions
             4. Post your review with:
                `gh pr review ${{ github.event.pull_request.number }} --comment -b "**[Claude · frontend]** <your review here>"`
 
-            Write a clear, structured review. Use markdown headers and bullet points.
+            Write a clear, structured review using markdown headers and bullet points.
             Only post via `gh pr review` — do not output the review to the workflow log only.
