@@ -15,8 +15,6 @@ export type HousingListingCardProps = {
   meta?: string;
   href?: string;
   className?: string;
-  /** Desktop (`lg+`) text alignment for title + footer block. */
-  textAlign?: "left" | "center";
 };
 
 export function HousingListingCard({
@@ -29,7 +27,7 @@ export function HousingListingCard({
   meta,
   href,
   className,
-  textAlign = "center",
+
 }: HousingListingCardProps) {
   const mobilePriceLine = priceCompact ?? `${price}/mo`;
 
@@ -65,22 +63,26 @@ export function HousingListingCard({
           "flex max-lg:pt-2 max-lg:pb-2 flex-1 flex-col pt-2 pb-1.5 lg:px-5 lg:pb-5 lg:pt-4",
           "[@media(max-height:780px)]:px-3 [@media(max-height:780px)]:py-2 [@media(max-height:780px)]:pb-3 [@media(max-height:480px)]:px-2.5 [@media(max-height:480px)]:pt-1.5 [@media(max-height:480px)]:pb-2",
           "text-left",
-          textAlign === "center" && "lg:text-center",
-          textAlign === "left" && "lg:text-left"
         )}
       >
-        <h3 className="text-sm font-bold leading-snug text-neutral-900 sm:text-base [@media(max-height:480px)]:text-xs">
+        <h3
+          className={cn(
+            "text-sm font-bold leading-snug text-neutral-900 sm:text-base [@media(max-height:480px)]:text-xs",
+          )}
+        >
           {title}
         </h3>
         <div
           className={cn(
-            "mt-1.5 flex w-full items-center justify-between gap-2 sm:mt-2",
-            "lg:mt-2 lg:flex-col lg:justify-start lg:gap-0",
-            textAlign === "center" && "lg:items-center",
-            textAlign === "left" && "lg:items-start"
+            "mt-1.5 flex w-full flex-col items-start gap-0.5 text-left sm:mt-2",
+            "lg:mt-2 lg:gap-0",
           )}
         >
-          <p className="text-sm font-semibold leading-none text-rose-600 lg:text-sm lg:font-normal lg:text-neutral-500">
+          <p
+            className={cn(
+              "text-sm font-semibold leading-snug text-rose-600 lg:text-sm lg:font-normal lg:text-neutral-500",
+            )}
+          >
             <span className="lg:hidden">{mobilePriceLine}</span>
             <span className="hidden lg:inline">
               {price}
@@ -90,9 +92,8 @@ export function HousingListingCard({
           {meta ? (
             <p
               className={cn(
-                "max-w-[55%] shrink-0 text-right text-[11px] font-medium leading-snug text-neutral-400 lg:mt-1.5 lg:max-w-none lg:text-xs",
-                textAlign === "center" && "lg:text-center",
-                textAlign === "left" && "lg:text-left"
+                "text-[11px] font-medium leading-snug text-neutral-400 lg:mt-1.5 lg:text-xs",
+
               )}
             >
               {meta}
