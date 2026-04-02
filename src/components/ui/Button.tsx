@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "inverse";
+type Variant = "primary" | "secondary" | "inverse" | "dark";
 type Size = "md" | "pill";
 
 type BaseProps = {
@@ -27,6 +27,8 @@ const variantClasses: Record<Variant, string> = {
     "bg-red-600 text-white shadow-md hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600",
   secondary: "bg-neutral-200 text-neutral-900 hover:bg-neutral-300",
   inverse: "bg-white text-neutral-900 shadow-md hover:bg-neutral-50",
+  dark:
+    "bg-neutral-900 text-white shadow-md hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900",
 };
 
 const sizeClasses: Record<Size, string> = {
