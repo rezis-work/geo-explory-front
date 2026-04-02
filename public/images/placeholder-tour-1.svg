@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#g)"/>
+  <path d="M0 540 C200 470 320 510 480 450 C640 390 780 430 920 360 C1040 300 1120 330 1200 300 L1200 750 L0 750 Z" fill="#0f172a" opacity="0.18"/>
+  <circle cx="950" cy="190" r="70" fill="#fde68a" opacity="0.9"/>
+  <text x="56" y="680" font-family="ui-sans-serif, system-ui" font-size="44" fill="#ffffff" opacity="0.92">
+    Tour Placeholder 01
+  </text>
+</svg>
+
