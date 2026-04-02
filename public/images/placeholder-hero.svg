@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0ea5e9" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14532d"/>
+      <stop offset="1" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e5e7eb"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+
+  <path d="M0 720 C220 610 360 660 520 560 C660 470 840 520 980 440 C1140 340 1280 420 1600 320 L1600 1000 L0 1000 Z"
+        fill="url(#hill)" opacity="0.9"/>
+
+  <path d="M140 760 C260 680 360 720 460 660 C560 600 680 640 780 580 C880 520 1000 580 1120 500 C1260 390 1400 470 1600 420 L1600 1000 L0 1000 Z"
+        fill="#0f172a" opacity="0.18"/>
+
+  <path d="M780 420 L980 260 L1180 420 Z" fill="#1f2937" opacity="0.55"/>
+  <path d="M900 320 L980 260 L1060 320 Z" fill="url(#snow)" opacity="0.95"/>
+
+  <g opacity="0.9">
+    <circle cx="260" cy="220" r="70" fill="#fde68a"/>
+    <circle cx="260" cy="220" r="110" fill="#fde68a" opacity="0.25"/>
+  </g>
+
+  <text x="80" y="920" font-family="ui-sans-serif, system-ui" font-size="46" fill="#ffffff" opacity="0.92">
+    GeoExplory  Hero Placeholder
+  </text>
+</svg>
+
