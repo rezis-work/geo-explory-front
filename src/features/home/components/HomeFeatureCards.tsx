@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { FeatureCard, type FeatureCardAccent } from "@/components/ui/FeatureCard";
+import { FeatureCard, type FeatureCardAccent } from "@/components/ui/reusableCards/FeatureCard";
 
 type FeatureItem = {
   accent: FeatureCardAccent;
