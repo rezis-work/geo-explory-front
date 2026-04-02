@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 import { cn } from "../lib/cn";
 
 type NavItem = { label: string; href: string };
@@ -97,7 +98,7 @@ export function Header() {
 
   return (
     <header className="border-b border-neutral-200 bg-white">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6">
+      <SectionContainer>
         <div className="flex h-14 items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <button
@@ -161,7 +162,7 @@ export function Header() {
             </div>
           </div>
         ) : null}
-      </div>
+      </SectionContainer>
     </header>
   );
 }

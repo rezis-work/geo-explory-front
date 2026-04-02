@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 import { Button } from "@/components/ui/Button";
 import { SurfaceCard } from "@/components/ui/SurfaceCard";
 
@@ -58,7 +59,7 @@ export function HomeHero() {
           />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[min(100svh,720px)] w-full max-w-7xl flex-col items-center justify-end px-4 pb-10 pt-24 sm:px-5 md:min-h-0 md:justify-center md:px-6 md:pb-16 md:pt-16 lg:flex-row lg:items-center lg:justify-start lg:gap-12 lg:py-20">
+        <SectionContainer className="relative z-10 flex min-h-[min(100svh,720px)] flex-col items-center justify-end pb-10 pt-24 md:min-h-0 md:justify-center md:pb-16 md:pt-16 lg:flex-row lg:items-center lg:justify-start lg:gap-12 lg:py-20">
           <div className="min-w-0 w-full max-w-xl text-center lg:max-w-none lg:w-1/2 lg:pr-8 xl:pr-12 lg:text-left">
             <h1 className="mx-auto max-w-xl text-3xl font-bold leading-tight tracking-tight text-white lg:mx-0 lg:max-w-2xl md:text-4xl md:text-neutral-900 lg:text-5xl">
               Explore and live in{" "}
@@ -131,7 +132,7 @@ export function HomeHero() {
               </div>
             </SurfaceCard>
           </div>
-        </div>
+        </SectionContainer>
       </div>
     </section>
   );

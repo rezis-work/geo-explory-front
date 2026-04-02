@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 import { HousingListingCard } from "@/components/ui/reusableCards/HousingListingCard";
+import { cn } from "@/lib/cn";
 import { HOUSING_LISTINGS } from "../api/homeApi";
 
 function HousingFeatureRow({
@@ -64,18 +66,21 @@ function HousingListingMasonry() {
 
 export function HomeHousing() {
   return (
-    <section className="bg-white py-14 sm:py-16 lg:py-20 [@media(max-height:780px)]:py-10 [@media(max-height:560px)]:py-6 [@media(max-height:420px)]:py-4">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6">
+    <section className="bg-neutral-50 py-14 sm:py-16 lg:bg-white lg:py-20 [@media(max-height:780px)]:py-10 [@media(max-height:560px)]:py-6 [@media(max-height:420px)]:py-4">
+      <SectionContainer>
         <div className="grid gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-start lg:gap-8 xl:gap-10 2xl:gap-12 [@media(max-height:780px)]:gap-6 [@media(max-height:480px)]:gap-4">
-          <div className="min-w-0 align-self-center">
+          <div className="min-w-0 lg:self-start">
             <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl md:text-4xl [@media(max-height:780px)]:text-2xl [@media(max-height:480px)]:text-xl [@media(max-height:420px)]:text-lg">
               Find your place or your people
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-600 sm:mt-4 sm:text-base [@media(max-height:780px)]:mt-2 [@media(max-height:780px)]:text-sm [@media(max-height:480px)]:line-clamp-3 [@media(max-height:480px)]:text-xs">
+            <p className="mt-2 text-sm leading-relaxed text-neutral-600 lg:hidden">
+              Curated long-term stays and community hubs.
+            </p>
+            <p className="mt-3 hidden text-sm leading-relaxed text-neutral-600 sm:mt-4 sm:text-base lg:block [@media(max-height:780px)]:mt-2 [@media(max-height:780px)]:text-sm [@media(max-height:480px)]:line-clamp-3 [@media(max-height:480px)]:text-xs">
               Georgia is becoming the top hub for digital nomads and students. We help you find
               cozy apartments, shared rooms, and long-term stays with locals or fellow travelers.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:gap-4 [@media(max-height:780px)]:mt-4 [@media(max-height:780px)]:gap-2.5 [@media(max-height:480px)]:mt-3 [@media(max-height:480px)]:gap-2">
+            <div className="mt-6 hidden flex-col gap-3 sm:mt-8 sm:gap-4 lg:flex [@media(max-height:780px)]:mt-4 [@media(max-height:780px)]:gap-2.5 [@media(max-height:480px)]:mt-3 [@media(max-height:480px)]:gap-2">
               <HousingFeatureRow
                 icon={<WifiIcon />}
                 title="Verified Nomad-Friendly"
@@ -90,21 +95,32 @@ export function HomeHousing() {
           </div>
 
           <div className="min-w-0">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:hidden">
+            <div
+              className={cn(
+                "flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2",
+                "-mx-4 px-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+                "sm:-mx-5 sm:px-5 md:-mx-6 md:px-6",
+                "lg:hidden"
+              )}
+              role="list"
+            >
               {HOUSING_LISTINGS.map((listing) => (
-                <HousingListingCard
+                <div
                   key={listing.href ?? listing.title}
-                  {...listing}
-                />
+                  className="w-[min(78vw,300px)] shrink-0 snap-start sm:w-[min(72vw,320px)]"
+                  role="listitem"
+                >
+                  <HousingListingCard {...listing} className="h-full" />
+                </div>
               ))}
             </div>
 
-            <div className="hidden lg:block ">
+            <div className="hidden lg:block">
               <HousingListingMasonry />
             </div>
           </div>
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }

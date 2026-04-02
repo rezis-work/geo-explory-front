@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 import { PopularTourCard } from "@/components/ui/reusableCards/PopularTourCard";
 import { TOURS } from "../api/homeApi";
 
@@ -24,7 +25,7 @@ function ArrowRightIcon({ className }: { className?: string }) {
 export function HomePopularTours() {
   return (
     <section className="bg-neutral-100 py-14 sm:py-16 lg:py-20">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6">
+      <SectionContainer>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0">
             <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
@@ -53,7 +54,7 @@ export function HomePopularTours() {
             </div>
           ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }

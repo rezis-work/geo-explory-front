@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { GuideMatchRow } from "@/components/ui/GuideMatchRow";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 import { GuideSpotlightCard } from "@/components/ui/GuideSpotlightCard";
 import { MatchMessagePreview } from "@/components/ui/MatchMessagePreview";
 import { cn } from "@/lib/cn";
@@ -42,7 +43,7 @@ function Eyebrow({ className }: { className?: string }) {
 export function HomeGuideMatch() {
   return (
     <section className="bg-neutral-50 py-14 sm:py-16 lg:py-20">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6">
+      <SectionContainer>
         <div className="lg:hidden">
           <Eyebrow />
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
@@ -95,7 +96,7 @@ export function HomeGuideMatch() {
             </ul>
           </div>
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }

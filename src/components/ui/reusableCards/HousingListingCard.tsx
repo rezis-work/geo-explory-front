@@ -6,14 +6,16 @@ export type HousingListingCardProps = {
   title: string;
   imageSrc: string;
   imageAlt: string;
-  /** e.g. "$600" */
+  /** e.g. "$750" */
   price: string;
-  /** e.g. " / month" */
+  /** e.g. " / month" (desktop / full line) */
   priceUnit?: string;
+  /** e.g. "$750/mo" — mobile footer; falls back to `{price}/mo` if omitted. */
+  priceCompact?: string;
   meta?: string;
   href?: string;
   className?: string;
-  /** Text alignment for title, price, and meta. */
+  /** Desktop (`lg+`) text alignment for title + footer block. */
   textAlign?: "left" | "center";
 };
 
@@ -23,22 +25,27 @@ export function HousingListingCard({
   imageAlt,
   price,
   priceUnit = " / month",
+  priceCompact,
   meta,
   href,
   className,
   textAlign = "center",
 }: HousingListingCardProps) {
+  const mobilePriceLine = priceCompact ?? `${price}/mo`;
+
   const body = (
     <article
       className={cn(
         "flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition-shadow hover:shadow-md",
+        "max-lg:p-2.5 lg:p-0",
         href && "block h-full",
         className
       )}
     >
       <div
         className={cn(
-          "relative w-full shrink-0 bg-neutral-100 aspect-4/3 sm:aspect-5/4 lg:aspect-video",
+          "relative w-full shrink-0 overflow-hidden rounded-xl bg-neutral-100 max-lg:aspect-square",
+          "lg:aspect-video lg:rounded-none",
           "[@media(max-height:780px)]:aspect-auto [@media(max-height:780px)]:h-32",
           "[@media(max-height:560px)]:h-28",
           "[@media(max-height:420px)]:h-24"
@@ -49,21 +56,49 @@ export function HousingListingCard({
           alt={imageAlt}
           fill
           className="object-cover"
-          sizes="(min-width: 1280px) 329px, (min-width: 1024px) 33vw, (min-width: 768px) 40vw, 50vw"
+          sizes="(min-width: 1280px) 329px, (min-width: 1024px) 33vw, (min-width: 768px) 40vw, (max-width: 1023px) 78vw, 50vw"
           unoptimized
         />
       </div>
-      <div className="flex flex-1 flex-col bg-white px-3 pb-3 pt-2 sm:px-5 sm:pb-5 sm:pt-4 [@media(max-height:780px)]:px-3 [@media(max-height:780px)]:py-2 [@media(max-height:780px)]:pb-3 [@media(max-height:480px)]:px-2.5 [@media(max-height:480px)]:pt-1.5 [@media(max-height:480px)]:pb-2">
+      <div
+        className={cn(
+          "flex max-lg:pt-2 max-lg:pb-2 flex-1 flex-col pt-2 pb-1.5 lg:px-5 lg:pb-5 lg:pt-4",
+          "[@media(max-height:780px)]:px-3 [@media(max-height:780px)]:py-2 [@media(max-height:780px)]:pb-3 [@media(max-height:480px)]:px-2.5 [@media(max-height:480px)]:pt-1.5 [@media(max-height:480px)]:pb-2",
+          "text-left",
+          textAlign === "center" && "lg:text-center",
+          textAlign === "left" && "lg:text-left"
+        )}
+      >
         <h3 className="text-sm font-bold leading-snug text-neutral-900 sm:text-base [@media(max-height:480px)]:text-xs">
           {title}
         </h3>
-        <p className="mt-1 text-xs font-normal leading-relaxed text-neutral-500 sm:mt-1.5 sm:text-sm [@media(max-height:480px)]:mt-0.5">
-          {price}
-          {priceUnit}
-        </p>
-        {meta ? (
-          <p className="mt-1 text-xs font-medium text-neutral-400">{meta}</p>
-        ) : null}
+        <div
+          className={cn(
+            "mt-1.5 flex w-full items-center justify-between gap-2 sm:mt-2",
+            "lg:mt-2 lg:flex-col lg:justify-start lg:gap-0",
+            textAlign === "center" && "lg:items-center",
+            textAlign === "left" && "lg:items-start"
+          )}
+        >
+          <p className="text-sm font-semibold leading-none text-rose-600 lg:text-sm lg:font-normal lg:text-neutral-500">
+            <span className="lg:hidden">{mobilePriceLine}</span>
+            <span className="hidden lg:inline">
+              {price}
+              {priceUnit}
+            </span>
+          </p>
+          {meta ? (
+            <p
+              className={cn(
+                "max-w-[55%] shrink-0 text-right text-[11px] font-medium leading-snug text-neutral-400 lg:mt-1.5 lg:max-w-none lg:text-xs",
+                textAlign === "center" && "lg:text-center",
+                textAlign === "left" && "lg:text-left"
+              )}
+            >
+              {meta}
+            </p>
+          ) : null}
+        </div>
       </div>
     </article>
   );

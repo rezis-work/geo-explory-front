@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SectionContainer } from "@/components/layout/SectionContainer";
 import { FeatureCard, type FeatureCardAccent } from "@/components/ui/reusableCards/FeatureCard";
 
 type FeatureItem = {
@@ -73,8 +74,8 @@ const FEATURES: FeatureItem[] = [
 
 export function HomeFeatureCards() {
   return (
-    <section className="flex justify-center bg-neutral-100 py-14 sm:py-16 lg:py-20">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6">
+    <section className="bg-neutral-100 py-14 sm:py-16 lg:py-20">
+      <SectionContainer>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 xl:gap-6">
           {FEATURES.map((item) => (
             <div key={item.title} className="min-w-0">
@@ -87,7 +88,7 @@ export function HomeFeatureCards() {
             </div>
           ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
