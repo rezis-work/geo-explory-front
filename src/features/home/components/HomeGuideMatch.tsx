@@ -30,7 +30,7 @@ function Eyebrow({ className }: { className?: string }) {
   return (
     <p
       className={cn(
-        "text-xs font-semibold uppercase tracking-[0.14em] text-red-600",
+        "text-xs lg:hidden  font-semibold uppercase tracking-[0.14em] text-red-600",
         className
       )}
     >
@@ -57,7 +57,7 @@ export function HomeGuideMatch() {
           />
         </div>
 
-        <div className="hidden gap-12 lg:grid lg:grid-cols-2 lg:items-center">
+        <div className="hidden gap-12 lg:grid lg:grid-cols-2 lg:items-start">
           <div className="rounded-3xl bg-neutral-200/80 p-6 shadow-inner sm:p-8">
             <div className="flex flex-col gap-4">
               <GuideMatchRow
@@ -80,7 +80,7 @@ export function HomeGuideMatch() {
 
           <div className="min-w-0">
             <Eyebrow />
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 xl:text-4xl xl:leading-tight">
+            <h2 className="lg:mt-0 mt-3 text-3xl font-bold tracking-tight text-neutral-900 xl:text-4xl xl:leading-tight">
               Pick your guide. Match. Chat. Explore.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-neutral-600">
