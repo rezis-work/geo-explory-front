@@ -1,4 +1,5 @@
-import { TourCardProps } from "@/components/ui/reusableCards/PopularTourCard";
+import type { HousingListingCardProps } from "@/components/ui/reusableCards/HousingListingCard";
+import type { TourCardProps } from "@/components/ui/reusableCards/PopularTourCard";
 
 export const TOURS: TourCardProps[] = [
     {
@@ -47,3 +48,41 @@ export const TOURS: TourCardProps[] = [
       ],
     },
   ];
+
+export const HOUSING_LISTINGS: HousingListingCardProps[] = [
+  {
+    title: "Vake Loft",
+    price: "$600",
+    priceUnit: "/ month",
+    imageSrc: "/images/placeholder-tour-1.svg",
+    imageAlt: "Bright loft interior in Vake",
+    href: "/housing/vake-loft",
+    meta: "4 slots left",
+  },
+  {
+    title: "Old Town Haven",
+    price: "$550",
+    priceUnit: "/ month",
+    imageSrc: "/images/placeholder-tour-2.svg",
+    imageAlt: "Apartment in Tbilisi Old Town",
+    href: "/housing/old-town-haven",
+    meta: "Private",
+  },
+  {
+    title: "Sololaki Studio",
+    price: "$450",
+    priceUnit: "/ month",
+    imageSrc: "/images/placeholder-tour-3.svg",
+    imageAlt: "Studio in Sololaki",
+    href: "/housing/sololaki-studio",
+  },
+  {
+    title: "Nomad Hub Shared",
+    price: "$300",
+    priceUnit: "/ month",
+    imageSrc: "/images/placeholder-tour-1.svg",
+    imageAlt: "Shared coliving space",
+    href: "/housing/nomad-hub",
+    meta: "4 slots left",
+  },
+];
