@@ -10,7 +10,8 @@ export type TourCardMetaItem = {
   label: string;
 };
 
-export type TourCardProps = {
+/** Shape of a tour from the API */
+export type PopularTour = {
   title: string;
   description: string;
   rating: number;
@@ -23,6 +24,10 @@ export type TourCardProps = {
   href?: string;
   /** Extra line under title on small screens (icons + labels) */
   compactMeta: TourCardMetaItem[];
+};
+
+export type PopularTourCardProps = {
+  tour: PopularTour;
   className?: string;
 };
 
@@ -108,18 +113,19 @@ function metaIcon(kind: TourCardMetaKind): ReactNode {
   }
 }
 
-export function PopularTourCard({
-  title,
-  description,
-  rating,
-  durationLabel,
-  price,
-  imageSrc,
-  imageAlt,
-  href,
-  compactMeta,
-  className,
-}: TourCardProps) {
+export function PopularTourCard({ tour, className }: PopularTourCardProps) {
+  const {
+    title,
+    description,
+    rating,
+    durationLabel,
+    price,
+    imageSrc,
+    imageAlt,
+    href,
+    compactMeta,
+  } = tour;
+
   const ratingLabel = rating.toFixed(1);
 
   const body = (

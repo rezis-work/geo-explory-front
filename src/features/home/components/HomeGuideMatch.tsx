@@ -42,7 +42,7 @@ function Eyebrow({ className }: { className?: string }) {
 export function HomeGuideMatch() {
   return (
     <section className="bg-neutral-50 py-14 sm:py-16 lg:py-20">
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6">
         <div className="lg:hidden">
           <Eyebrow />
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">

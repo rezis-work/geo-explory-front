@@ -12,13 +12,17 @@ function HousingFeatureRow({
   description: string;
 }) {
   return (
-    <div className="flex gap-4 rounded-2xl bg-neutral-100 p-4 sm:p-5">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-100 text-sky-600">
+    <div className="flex gap-3 rounded-2xl bg-neutral-100 p-3 sm:gap-4 sm:p-4 md:p-5 [@media(max-height:780px)]:gap-2.5 [@media(max-height:780px)]:p-3 [@media(max-height:480px)]:rounded-xl [@media(max-height:480px)]:p-2.5">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-600 sm:h-12 sm:w-12 sm:rounded-xl [@media(max-height:780px)]:h-9 [@media(max-height:780px)]:w-9 [@media(max-height:480px)]:h-8 [@media(max-height:480px)]:w-8">
         {icon}
       </div>
       <div className="min-w-0">
-        <p className="font-semibold text-neutral-900">{title}</p>
-        <p className="mt-1 text-sm leading-relaxed text-neutral-600">{description}</p>
+        <p className="text-sm font-semibold text-neutral-900 sm:text-base [@media(max-height:480px)]:text-xs">
+          {title}
+        </p>
+        <p className="mt-0.5 text-xs leading-relaxed text-neutral-600 sm:mt-1 sm:text-sm [@media(max-height:480px)]:line-clamp-2">
+          {description}
+        </p>
       </div>
     </div>
   );
@@ -42,54 +46,61 @@ function PeopleIcon() {
   );
 }
 
-export function HomeHousing() {
-  const [a, b, c, d] = HOUSING_LISTINGS;
-
+/** Left: Vake, Sololaki. Right: Old Town, Nomad — two inner columns, staggered. From xl (1280px), inner tracks are 329px + 329px, centered in the wide rail. */
+function HousingListingMasonry() {
   return (
-    <section className="bg-white py-14 sm:py-16 lg:py-20">
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
-          <div className="min-w-0">
-            <p className="text-sm font-medium text-neutral-500">
-              Curated long-term stays and community hubs.
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+    <div className="grid grid-cols-2 items-start gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:grid-cols-[329px_329px] xl:justify-center [@media(max-height:780px)]:gap-3 [@media(max-height:480px)]:gap-2">
+      <div className="flex min-w-0 flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-8 [@media(max-height:780px)]:gap-3 [@media(max-height:480px)]:gap-2">
+        <HousingListingCard {...HOUSING_LISTINGS[0]} />
+        <HousingListingCard {...HOUSING_LISTINGS[2]} />
+      </div>
+      <div className="flex min-w-0 flex-col gap-4 pt-10 sm:gap-5 sm:pt-12 md:gap-6 md:pt-14 lg:gap-8 lg:pt-16 [@media(max-height:780px)]:gap-3 [@media(max-height:780px)]:pt-6 [@media(max-height:480px)]:gap-2 [@media(max-height:480px)]:pt-4">
+        <HousingListingCard {...HOUSING_LISTINGS[1]} />
+        <HousingListingCard {...HOUSING_LISTINGS[3]} />
+      </div>
+    </div>
+  );
+}
+
+export function HomeHousing() {
+  return (
+    <section className="bg-white py-14 sm:py-16 lg:py-20 [@media(max-height:780px)]:py-10 [@media(max-height:560px)]:py-6 [@media(max-height:420px)]:py-4">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-start lg:gap-8 xl:gap-10 2xl:gap-12 [@media(max-height:780px)]:gap-6 [@media(max-height:480px)]:gap-4">
+          <div className="min-w-0 align-self-center">
+            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl md:text-4xl [@media(max-height:780px)]:text-2xl [@media(max-height:480px)]:text-xl [@media(max-height:420px)]:text-lg">
               Find your place or your people
             </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-600">
-              Whether you are a digital nomad, student, or relocating for work—browse verified
-              listings, shared rooms, and hosts who speak your language across Tbilisi and beyond.
+            <p className="mt-3 text-sm leading-relaxed text-neutral-600 sm:mt-4 sm:text-base [@media(max-height:780px)]:mt-2 [@media(max-height:780px)]:text-sm [@media(max-height:480px)]:line-clamp-3 [@media(max-height:480px)]:text-xs">
+              Georgia is becoming the top hub for digital nomads and students. We help you find
+              cozy apartments, shared rooms, and long-term stays with locals or fellow travelers.
             </p>
-            <div className="mt-8 flex flex-col gap-4">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:gap-4 [@media(max-height:780px)]:mt-4 [@media(max-height:780px)]:gap-2.5 [@media(max-height:480px)]:mt-3 [@media(max-height:480px)]:gap-2">
               <HousingFeatureRow
                 icon={<WifiIcon />}
-                title="Verified nomad-friendly"
+                title="Verified Nomad-Friendly"
                 description="Tested high-speed internet in every listing."
               />
               <HousingFeatureRow
                 icon={<PeopleIcon />}
-                title="Find a roommate"
+                title="Find a Roommate"
                 description="Connect with people planning their move."
               />
             </div>
           </div>
 
           <div className="min-w-0">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:hidden">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:hidden">
               {HOUSING_LISTINGS.map((listing) => (
-                <HousingListingCard key={listing.href ?? listing.title} {...listing} />
+                <HousingListingCard
+                  key={listing.href ?? listing.title}
+                  {...listing}
+                />
               ))}
             </div>
 
-            <div className="hidden gap-4 lg:grid lg:grid-cols-2 lg:gap-5">
-              <div className="flex flex-col gap-4 lg:gap-5">
-                <HousingListingCard {...a} />
-                <HousingListingCard {...c} />
-              </div>
-              <div className="flex flex-col gap-4 pt-10 lg:gap-5 lg:pt-14">
-                <HousingListingCard {...b} />
-                <HousingListingCard {...d} />
-              </div>
+            <div className="hidden lg:block ">
+              <HousingListingMasonry />
             </div>
           </div>
         </div>

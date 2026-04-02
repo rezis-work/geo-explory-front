@@ -1,19 +1,11 @@
-// import { HomePageView } from "@/features/home/views/HomePageView";
-import { HomeFeatureCards } from "@/features/home/components/HomeFeatureCards";
-import { HomeGuideMatch } from "@/features/home/components/HomeGuideMatch";
-import { HomeHero } from "@/features/home/components/HomeHero";
-import { HomeHousing } from "@/features/home/components/HomeHousing";
-import { HomePopularTours } from "@/features/home/components/HomePopularTours";
+
+import GeoExplorLandingPageView from "@/features/home/views/GeoExplorLandingPageView";
 
 export default function Home() {
   // return <HomePageView />;
   return (
     <main className="flex-1">
-      <HomeHero />
-      <HomeFeatureCards />
-      <HomeGuideMatch />
-      <HomePopularTours />
-      <HomeHousing />
+<GeoExplorLandingPageView />
     </main>
   );
 }

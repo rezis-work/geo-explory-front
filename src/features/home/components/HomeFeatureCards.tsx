@@ -73,8 +73,8 @@ const FEATURES: FeatureItem[] = [
 
 export function HomeFeatureCards() {
   return (
-    <section className="bg-neutral-100 py-14 sm:py-16 lg:py-20 flex justify-center">
-      <div className=" w-full max-w-6xl px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+    <section className="flex justify-center bg-neutral-100 py-14 sm:py-16 lg:py-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 xl:gap-6">
           {FEATURES.map((item) => (
             <div key={item.title} className="min-w-0">
