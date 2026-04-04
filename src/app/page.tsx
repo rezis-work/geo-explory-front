@@ -1,5 +1,5 @@
 
-import GeoExplorLandingPageView from "@/features/home/views/GeoExplorLandingPageView";
+import GeoExplorLandingPageView from "@/features/geoExploryHome/views/GeoExplorLandingPageView";
 
 export default function Home() {
   // return <HomePageView />;

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { SectionContainer } from "@/components/layout/SectionContainer";
-import { HousingListingCard } from "@/components/ui/reusableCards/HousingListingCard";
+import { HousingListingCard } from "@/components/shared/ui/reusableCards/HousingListingCard";
 import { cn } from "@/lib/cn";
 import { HOUSING_LISTINGS } from "../api/homeApi";
 

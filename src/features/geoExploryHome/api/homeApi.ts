@@ -1,7 +1,7 @@
-import type { BeyondSightsCardProps } from "@/components/ui/reusableCards/BeyondSightsCard";
-import type { CommunityCommentCardProps } from "@/components/ui/reusableCards/CommunityCommentCard";
-import type { HousingListingCardProps } from "@/components/ui/reusableCards/HousingListingCard";
-import type { PopularTour } from "@/components/ui/reusableCards/PopularTourCard";
+import type { BeyondSightsCardProps } from "@/components/shared/ui/reusableCards/BeyondSightsCard";
+import type { CommunityCommentCardProps } from "@/components/shared/ui/reusableCards/CommunityCommentCard";
+import type { HousingListingCardProps } from "@/components/shared/ui/reusableCards/HousingListingCard";
+import type { PopularTour } from "@/components/shared/ui/reusableCards/PopularTourCard";
 
 export const TOURS: PopularTour[] = [
     {

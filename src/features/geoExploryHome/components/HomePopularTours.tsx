@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionContainer } from "@/components/layout/SectionContainer";
-import { PopularTourCard } from "@/components/ui/reusableCards/PopularTourCard";
+import { PopularTourCard } from "@/components/shared/ui/reusableCards/PopularTourCard";
 import { TOURS } from "../api/homeApi";
 
 function ArrowRightIcon({ className }: { className?: string }) {

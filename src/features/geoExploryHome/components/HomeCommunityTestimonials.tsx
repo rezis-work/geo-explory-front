@@ -1,5 +1,5 @@
 import { SectionContainer } from "@/components/layout/SectionContainer";
-import { CommunityCommentCard } from "@/components/ui/reusableCards/CommunityCommentCard";
+import { CommunityCommentCard } from "@/components/shared/ui/reusableCards/CommunityCommentCard";
 import { cn } from "@/lib/cn";
 import { COMMUNITY_TESTIMONIALS } from "../api/homeApi";
 

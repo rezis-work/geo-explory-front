@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
-import { GuideMatchRow } from "@/components/ui/GuideMatchRow";
+import { GuideMatchRow } from "@/components/shared/ui/GuideMatchRow";
 import { SectionContainer } from "@/components/layout/SectionContainer";
-import { GuideSpotlightCard } from "@/components/ui/GuideSpotlightCard";
-import { MatchMessagePreview } from "@/components/ui/MatchMessagePreview";
+import { GuideSpotlightCard } from "@/components/shared/ui/GuideSpotlightCard";
+import { MatchMessagePreview } from "@/components/shared/ui/MatchMessagePreview";
 import { cn } from "@/lib/cn";
 
 const BULLETS = [

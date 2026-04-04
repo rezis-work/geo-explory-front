@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/shared/ui/Button";
 import { cn } from "@/lib/cn";
 
 export type GuideSpotlightCardProps = {

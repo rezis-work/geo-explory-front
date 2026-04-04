@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionContainer } from "@/components/layout/SectionContainer";
-import { BeyondSightsCard } from "@/components/ui/reusableCards/BeyondSightsCard";
+import { BeyondSightsCard } from "@/components/shared/ui/reusableCards/BeyondSightsCard";
 import { cn } from "@/lib/cn";
 import { BEYOND_THE_SIGHTS } from "../api/homeApi";
 
