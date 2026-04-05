@@ -1,11 +1,9 @@
-
-import GeoExplorLandingPageView from "@/features/geoExploryHome/views/GeoExplorLandingPageView";
+import GeoExploreLanding from "@/features/geoexplore/home/components/view/GeoExploreLanding";
 
 export default function Home() {
-  // return <HomePageView />;
   return (
     <main className="flex-1">
-<GeoExplorLandingPageView />
+      <GeoExploreLanding />
     </main>
   );
 }

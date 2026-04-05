@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { SectionContainer } from "@/components/layout/SectionContainer";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { FooterMobileNav } from "./FooterMobileNav";
+import { SectionContainer } from "./layout/SectionContainer";
 
 const PLATFORM = [
   { label: "Find a Guide", href: "/guides" },
