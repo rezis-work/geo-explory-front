@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react";
 import { RatingBadge } from "@/components/shared/ui/RatingBadge";
 import { TourMetaIcon } from "@/components/shared/ui/TourMetaIcon";
 import { cn } from "@/lib/cn";
-import type { PopularTour } from "@/features/tours/home/types/popularTour";
+import type { PopularTour } from "@/modules/tours/home/types/popularTour";
 
 export type ToursCatalogTourCardProps = {
   tour: PopularTour;

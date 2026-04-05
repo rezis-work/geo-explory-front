@@ -1,4 +1,4 @@
-import ToursPageView from "@/features/tours/home/components/view/ToursPageView";
+import ToursPageView from "@/modules/tours/home/components/view/ToursPageView";
 
 export default function ToursPage() {
   return (

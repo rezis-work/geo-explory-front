@@ -1,4 +1,4 @@
-import GeoExploreLanding from "@/features/geoexplore/home/components/view/GeoExploreLanding";
+import GeoExploreLanding from "@/modules/geoexplore/home/components/view/GeoExploreLanding";
 
 export default function Home() {
   return (

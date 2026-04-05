@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ChevronRight, Heart, MapPin } from "lucide-react";
 import { SectionContainer } from "@/components/layout/SectionContainer";
 import { cn } from "@/lib/cn";
-import { GUIDE_PERSONALITIES } from "@/features/guides/home/api/guidePersonalities";
+import { GUIDE_PERSONALITIES } from "@/modules/guides/home/api/guidePersonalities";
 
 function PersonalityCard({
   name,

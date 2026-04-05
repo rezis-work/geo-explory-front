@@ -1,4 +1,4 @@
-import type { PopularTour } from "@/features/tours/home/types/popularTour";
+import type { PopularTour } from "@/modules/tours/home/types/popularTour";
 
 export const TOURS: PopularTour[] = [
   {

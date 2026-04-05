@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { SectionContainer } from "@/components/layout/SectionContainer";
 import { cn } from "@/lib/cn";
-import { TOURS } from "@/features/tours/home/api/toursData";
-import { ToursCatalogTourCard } from "@/features/tours/home/components/ToursCatalogTourCard";
+import { TOURS } from "@/modules/tours/home/api/toursData";
+import { ToursCatalogTourCard } from "@/modules/tours/home/components/ToursCatalogTourCard";
 
 export function ToursPopularGrid() {
   return (

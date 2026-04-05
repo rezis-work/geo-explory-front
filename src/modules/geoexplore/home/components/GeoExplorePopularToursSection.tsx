@@ -6,8 +6,8 @@ import { SectionContainer } from "@/components/layout/SectionContainer";
 import { RatingBadge } from "@/components/shared/ui/RatingBadge";
 import { TourMetaIcon } from "@/components/shared/ui/TourMetaIcon";
 import { cn } from "@/lib/cn";
-import { TOURS } from "@/features/tours/home/api/toursData";
-import type { PopularTour } from "@/features/tours/home/types/popularTour";
+import { TOURS } from "@/modules/tours/home/api/toursData";
+import type { PopularTour } from "@/modules/tours/home/types/popularTour";
 
 function wrapTourLink(href: string | undefined, children: ReactNode) {
   if (href) {
